@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematical Modeling in Malaysian Agro-Technology: Oil Palm Ripening Rates</title>
+    <!-- Tailwind CSS for modern responsive layout -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Inter for premium typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chart.js for interactive rendering and animation -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- KaTeX for beautiful mathematical formulas -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+    <!-- Lucide Icons for responsive visuals -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbars for a clean look */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- Academic Header Banner representing Malaysian Agro-Product Tech -->
+    <header class="bg-gradient-to-r from-emerald-800 via-teal-950 to-emerald-950 text-white shadow-xl border-b-4 border-amber-500">
+        <div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-4">
+                <div class="bg-amber-500 p-3 rounded-xl shadow-md flex items-center justify-center">
+                    <i data-lucide="sprout" class="w-8 h-8 text-emerald-950"></i>
+                </div>
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-amber-400">Universiti Agro-Tech Sandbox</span>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Calculus in Agro-Product Bioscience</h1>
+                    <p class="text-sm text-emerald-200 mt-1">Modeling Oil Accumulation Rate in *Elaeis guineensis* (Tenera Hybrid)</p>
+                </div>
+            </div>
+            <div class="bg-emerald-900/60 backdrop-blur border border-emerald-700/50 px-4 py-2 rounded-lg text-xs text-emerald-100 flex items-center space-x-2">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></span>
+                <span>Active Module: <strong>SFP: Agro Product Technology</strong></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- Left Side: Theoretical Background & Formulas (5 Columns) -->
+            <section class="lg:col-span-5 flex flex-col gap-6">
+                
+                <!-- Context Card -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <div class="flex items-center space-x-2 text-emerald-700 font-semibold text-sm mb-2 uppercase tracking-wide">
+                        <i data-lucide="book-open" class="w-4 h-4"></i>
+                        <span>The Malaysian Bioscience Scenario</span>
+                    </div>
+                    <h2 class="text-xl font-bold text-slate-900 mb-3">Determining the Peak Harvest Window</h2>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        In Malaysia's commercial oil palm plantation sector, timing is everything. Oil synthesis in the fruit mesocarp begins slowly, accelerates exponentially during weeks 14 to 18 after anthesis (WAA), and plateaus as the fruit reaches absolute physiological maturity.
+                    </p>
+                    <div class="p-3.5 bg-amber-50/80 border-l-4 border-amber-500 rounded-r-lg text-xs text-amber-900 leading-relaxed mb-4">
+                        <strong class="font-semibold block mb-0.5"><i data-lucide="alert-triangle" class="inline w-3.5 h-3.5 mr-1 align-text-bottom"></i>The Industrial Dilemma:</strong>
+                        Harvesting too early results in under-ripe bunches with high moisture and negligible oil (low OER). Delaying harvest causes over-ripe fruits to drop, elevating <strong>Free Fatty Acids (FFA)</strong> beyond the critical premium refining limit of <strong>5.0%</strong>. By using calculus to evaluate the rate of change \(f'(x)\), agro-technologists determine the optimum harvesting point.
+                    </div>
+                    <p class="text-slate-500 text-[11px] italic flex items-center">
+                        <i data-lucide="graduation-cap" class="w-3.5 h-3.5 mr-1 text-emerald-600"></i>
+                        Realistic modeling references based on the Malaysian Palm Oil Board (MPOB) physiological standards.
+                    </p>
+                </div>
+
+                <!-- Mathematical Formulation Card (KaTeX) -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <div class="flex items-center space-x-2 text-emerald-700 font-semibold text-sm mb-3 uppercase tracking-wide">
+                        <i data-lucide="binary" class="w-4 h-4"></i>
+                        <span>Mathematical Representation</span>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-4">
+                        The cumulative oil accumulation \(f(x)\) is modeled via a sigmoidal Generalized Logistic Growth Function, where \(x\) represents Weeks After Anthesis (WAA).
+                    </p>
+                    
+                    <!-- Formulas styled beautifully -->
+                    <div class="space-y-4">
+                        <!-- Primary Function -->
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 relative overflow-hidden">
+                            <span class="absolute right-3 top-3 bg-emerald-100 text-emerald-800 text-[9px] font-bold px-1.5 py-0.5 rounded uppercase">Function</span>
+                            <div class="text-xs text-slate-400 font-medium mb-1">Cumulative Mesocarp Oil Content (%):</div>
+                            <div class="text-base font-mono text-slate-900 py-1 overflow-x-auto text-center">
+                                $$f(x) = \frac{L}{1 + e^{-k(x - x_0)}}$$
+                            </div>
+                        </div>
+
+                        <!-- First Derivative -->
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 relative overflow-hidden">
+                            <span class="absolute right-3 top-3 bg-amber-100 text-amber-800 text-[9px] font-bold px-1.5 py-0.5 rounded uppercase">First Derivative</span>
+                            <div class="text-xs text-slate-400 font-medium mb-1">Instantaneous Rate of Accumulation (% / week):</div>
+                            <div class="text-base font-mono text-slate-900 py-1 overflow-x-auto text-center">
+                                $$f'(x) = \frac{L \cdot k \cdot e^{-k(x - x_0)}}{(1 + e^{-k(x - x_0)})^2}$$
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Parameter Legends -->
+                    <div class="mt-4 pt-4 border-t border-slate-100">
+                        <h4 class="text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Model Parameter Meanings:</h4>
+                        <ul class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px]">
+                            <li class="bg-slate-50 p-2 rounded border border-slate-100">
+                                <strong class="text-emerald-700">\(L\):</strong> Max Oil Capacity of mesocarp (e.g. 80% wet weight basis).
+                            </li>
+                            <li class="bg-slate-50 p-2 rounded border border-slate-100">
+                                <strong class="text-emerald-700">\(k\):</strong> Growth velocity coefficient (maturation speed).
+                            </li>
+                            <li class="bg-slate-50 p-2 rounded border border-slate-100">
+                                <strong class="text-emerald-700">\(x_0\):</strong> Inflection point week (peak daily rate age).
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Interactive Parameters Control -->
+                <div class="bg-gradient-to-br from-emerald-900 to-teal-950 text-white p-6 rounded-2xl shadow-md border border-emerald-800">
+                    <div class="flex items-center space-x-2 text-amber-400 font-semibold text-sm mb-4 uppercase tracking-wide">
+                        <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>
+                        <span>Adjust Field Conditions (Cultivar / Climate)</span>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <!-- Slider L -->
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-emerald-200">Max Oil Yield (\(L\) %)</span>
+                                <span class="font-bold text-amber-300" id="val-L">80.0%</span>
+                            </div>
+                            <input type="range" id="param-L" min="65" max="90" step="1" value="80" 
+                                   class="w-full accent-amber-500 h-1.5 bg-emerald-800 rounded-lg cursor-pointer">
+                            <span class="text-[10px] text-emerald-300">Represents maximum extraction limit based on hybrid genetics.</span>
+                        </div>
+
+                        <!-- Slider k -->
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-emerald-200">Maturation Rate Rate (\(k\))</span>
+                                <span class="font-bold text-amber-300" id="val-k">0.60</span>
+                            </div>
+                            <input type="range" id="param-k" min="0.30" max="1.0" step="0.05" value="0.60" 
+                                   class="w-full accent-amber-500 h-1.5 bg-emerald-800 rounded-lg cursor-pointer">
+                            <span class="text-[10px] text-emerald-300">Determined by environmental factors like temperature and soil nitrogen.</span>
+                        </div>
+
+                        <!-- Slider x0 -->
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-emerald-200">Inflection Point (\(x_0\) WAA)</span>
+                                <span class="font-bold text-amber-300" id="val-x0">17.0 WAA</span>
+                            </div>
+                            <input type="range" id="param-x0" min="15.0" max="19.0" step="0.2" value="17.0" 
+                                   class="w-full accent-amber-500 h-1.5 bg-emerald-800 rounded-lg cursor-pointer">
+                            <span class="text-[10px] text-emerald-300">The week of peak lipid synthesis. Influenced heavily by monsoon rainfall trends.</span>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Right Side: Interactive Graph (Chart.js) & Live Math Evaluation (7 Columns) -->
+            <section class="lg:col-span-7 flex flex-col gap-6">
+                
+                <!-- Main Sandbox Interactive Visual -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col h-full justify-between">
+                    <div>
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-100 pb-4 mb-4 gap-2">
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-900 flex items-center">
+                                    <i data-lucide="line-chart" class="w-5 h-5 mr-2 text-emerald-600"></i>
+                                    Interactive Biological Ripening Simulator
+                                </h3>
+                                <p class="text-xs text-slate-500">Click anywhere on the plot area to calculate rates at specific harvest points</p>
+                            </div>
+                            <div class="flex flex-wrap gap-2 text-xs">
+                                <button onclick="resetModel()" class="bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-200 font-medium transition flex items-center gap-1">
+                                    <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Reset
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Legend Details -->
+                        <div class="flex space-x-4 mb-4 text-xs font-semibold justify-end">
+                            <span class="flex items-center"><span class="w-3.5 h-3 bg-emerald-500 inline-block rounded mr-1.5"></span>Cumulative Oil Content (%)</span>
+                            <span class="flex items-center"><span class="w-3.5 h-3 bg-amber-500 inline-block rounded mr-1.5"></span>Accumulation Rate (% / Week)</span>
+                        </div>
+
+                        <!-- Chart Container -->
+                        <div class="relative w-full aspect-[4/3] sm:aspect-[16/10] bg-slate-50 rounded-xl p-2 border border-slate-100">
+                            <canvas id="ripeningChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Selected Point Dashboard -->
+                    <div id="dynamic-analysis-card" class="mt-6 bg-slate-50 rounded-xl p-5 border border-slate-200 transition-all duration-300">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-200 pb-3 mb-3 gap-2">
+                            <div class="flex items-center space-x-2">
+                                <span class="bg-emerald-600 text-white font-bold px-2 py-1 rounded text-xs" id="display-waa">17.0 WAA</span>
+                                <h4 class="font-bold text-slate-800 text-sm">Calculated Instantaneous Bio-Metrics</h4>
+                            </div>
+                            <span class="text-xs text-slate-500 italic">Click curves to evaluate alternative ages</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Cumulative Content Widget -->
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200 flex items-center justify-between shadow-sm">
+                                <div>
+                                    <span class="text-[10px] text-slate-400 font-semibold uppercase block">Total Mesocarp Oil (\(f(x)\))</span>
+                                    <span class="text-xl font-extrabold text-emerald-700" id="display-f">40.0%</span>
+                                </div>
+                                <div class="bg-emerald-50 p-2.5 rounded-lg">
+                                    <i data-lucide="droplet" class="w-6 h-6 text-emerald-600"></i>
+                                </div>
+                            </div>
+
+                            <!-- Derivative Rate Widget -->
+                            <div class="bg-white p-3.5 rounded-lg border border-slate-200 flex items-center justify-between shadow-sm">
+                                <div>
+                                    <span class="text-[10px] text-slate-400 font-semibold uppercase block">Accumulation Rate (\(f'(x)\))</span>
+                                    <span class="text-xl font-extrabold text-amber-600" id="display-df">12.00%<span class="text-xs font-normal text-slate-500"> / week</span></span>
+                                </div>
+                                <div class="bg-amber-50 p-2.5 rounded-lg">
+                                    <i data-lucide="trending-up" class="w-6 h-6 text-amber-500"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Short Layman Academic Explanation -->
+                        <div class="mt-4 bg-emerald-50 border border-emerald-100 p-4 rounded-lg flex items-start space-x-3">
+                            <div class="bg-emerald-600 text-white rounded-full p-1 mt-0.5">
+                                <i data-lucide="info" class="w-4 h-4"></i>
+                            </div>
+                            <div class="text-xs leading-relaxed text-slate-700">
+                                <strong class="font-bold text-emerald-950 block mb-0.5" id="verdict-title">The Inflection Point (Max Lipid Synthesis Phase)</strong>
+                                <span id="verdict-desc">At exactly week 17 (under baseline conditions), the oil accumulation rate reaches its maximum. The cells are converting carbon precursors into triacylglycerols (TAGs) at the absolute fastest biological pace.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+
+        <!-- Academic Literature Context & Citation Box -->
+        <section class="mt-8 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+            <h3 class="text-base font-bold text-slate-900 flex items-center mb-3">
+                <i data-lucide="book-marked" class="w-5 h-5 mr-2 text-emerald-600"></i>
+                Industrial Standards Reference (Malaysian Context)
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-slate-600">
+                <div class="space-y-1">
+                    <h4 class="font-semibold text-emerald-800 uppercase text-[10px]">Optimal Fresh Fruit Bunch (FFB)</h4>
+                    <p class="leading-relaxed">According to the Malaysian Standard (MS 2095:2014) on sustainable oil palm, bunches are classified as harvestable when there are at least 1-10 loose fruits naturally detached. This matches perfectly with the flattening of our derivative curve (\(f'(x) \to 0\)) as shown in the simulation when the cumulative oil synthesis is maximized.</p>
+                </div>
+                <div class="space-y-1">
+                    <h4 class="font-semibold text-emerald-800 uppercase text-[10px]">Lipase Activity & FFA Accumulation</h4>
+                    <p class="leading-relaxed">After WAA 20, cellular integrity of the outer mesocarp decays. Endogenous lipases come into contact with stored lipids, accelerating the breakdown of valuable neutral fats into free fatty acids (FFA). Calculus illustrates why harvesting at the absolute right week maximizes extraction efficiency prior to massive enzyme activation.</p>
+                </div>
+                <div class="space-y-1">
+                    <h4 class="font-semibold text-emerald-800 uppercase text-[10px]">Malaysian Sustainable Palm Oil (MSPO)</h4>
+                    <p class="leading-relaxed">Utilizing precision mathematical models minimizes fruit waste and optimizes transport logistics from the collection points to crude palm oil (CPO) mills across regions like Johor, Sabah, and Sarawak. This interactive platform forms a cornerstone of digital agriculture integrations in processing engineering classes.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Academic Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-center py-6 border-t border-slate-800 text-xs mt-12">
+        <p>&copy; 2026. SFP: Agro Product Technology Lab - Digital Calculus Integration Initiative. Developed for Malaysian Bioscience Scholars.</p>
+    </footer>
+
+    <script>
+        // Store global interactive variables and chart instance
+        let ripeningChart = null;
+        let activeWaa = 17.0; // Starting midpoint focus point
+
+        // Base setup variables representing real values
+        const WAA_MIN = 12.0;
+        const WAA_MAX = 22.0;
+        const STEP_SIZE = 0.1;
+
+        // Initialize Lucide Icons for high fidelity aesthetics
+        lucide.createIcons();
+
+        // Formula Calculus Core Solver
+        function getOilPercent(x, L, k, x0) {
+            // f(x) Logistic model
+            return L / (1 + Math.exp(-k * (x - x0)));
+        }
+
+        function getAccumulationRate(x, L, k, x0) {
+            // First Derivative f'(x) calculation
+            const expPart = Math.exp(-k * (x - x0));
+            const denominator = Math.pow(1 + expPart, 2);
+            return (L * k * expPart) / denominator;
+        }
+
+        // Generate full dynamic dataset for visual curves
+        function generateChartData() {
+            const L = parseFloat(document.getElementById('param-L').value);
+            const k = parseFloat(document.getElementById('param-k').value);
+            const x0 = parseFloat(document.getElementById('param-x0').value);
+
+            const labels = [];
+            const cumulativeData = [];
+            const rateData = [];
+
+            for (let x = WAA_MIN; x <= WAA_MAX; x += STEP_SIZE) {
+                const roundedX = Math.round(x * 10) / 10;
+                labels.push(roundedX);
+                cumulativeData.push(getOilPercent(roundedX, L, k, x0));
+                rateData.push(getAccumulationRate(roundedX, L, k, x0));
+            }
+
+            return { labels, cumulativeData, rateData, params: { L, k, x0 } };
+        }
+
+        // Dynamic Bioscience layman report generator based on selected weeks
+        function getVerdict(x, L, k, x0) {
+            const oilContent = getOilPercent(x, L, k, x0);
+            const rate = getAccumulationRate(x, L, k, x0);
+
+            // Calculate second derivative to assess acceleration vs deceleration phase
+            const expPart = Math.exp(-k * (x - x0));
+            // f''(x) = (L * k^2 * e^(-k(x-x0)) * (e^(-k(x-x0)) - 1)) / (1 + e^(-k(x-x0)))^3
+            const doubleDerivative = (L * Math.pow(k, 2) * expPart * (expPart - 1)) / Math.pow(1 + expPart, 3);
+
+            let title = "";
+            let description = "";
+
+            if (x < (x0 - 1.5)) {
+                title = "Early Maturation Phase (Very Low Yield)";
+                description = `At ${x.toFixed(1)} weeks, the shell and kernel are hardening, but the mesocarp lipid accumulation rate is tiny (${rate.toFixed(2)}% per week). Total oil content is just ${oilContent.toFixed(1)}%. Harvesting now is premature; the bunch contains too much water, translating to immense losses for Malaysian mills.`;
+            } else if (x >= (x0 - 1.5) && x < x0) {
+                title = "Rapid Synthesis & Acceleration Phase";
+                description = `At ${x.toFixed(1)} weeks, the fruit is in its fast-growth phase. The accumulation rate is accelerating (${rate.toFixed(2)}% per week, with positive second derivative). The mesocarp is actively synthesizing triacylglycerols. Hold harvest activities—every single day adds substantial oil yield.`;
+            } else if (Math.abs(x - x0) <= 0.2) {
+                title = "The Inflection Point (Max Synthesis Velocity)";
+                description = `At exactly WAA ${x.toFixed(1)}, synthesis rate peaks at its global maximum value of ${rate.toFixed(2)}% per week. This is the inflection point where mathematically the curve flips from concave up (accelerating) to concave down (decelerating). Excellent biological activity.`;
+            } else if (x > x0 && x <= (x0 + 2.0)) {
+                title = "Deceleration Phase (接近 Maturation Window)";
+                description = `At ${x.toFixed(1)} weeks, cumulative oil content is highly lucrative at ${oilContent.toFixed(1)}%, but the weekly accumulation rate has decelerated to ${rate.toFixed(2)}% per week. The cells are reaching absolute structural saturation. This represents the premium harvesting threshold.`;
+            } else {
+                title = "Asymptotic Plateau (Maximum Mature Oil Content)";
+                description = `At ${x.toFixed(1)} WAA, cumulative oil has hit its asymptotic plateau of ${oilContent.toFixed(1)}%, meaning accumulation rate is near zero (${rate.toFixed(2)}% per week). You must harvest immediately. Overripe fruit will detach, increasing the soil acid contamination (FFA exceeds 5.0%), resulting in sub-standard crude palm oil.`;
+            }
+
+            return { title, description, oilContent, rate };
+        }
+
+        // Handle UI component updates
+        function updateUI(waaPoint) {
+            const { labels, cumulativeData, rateData, params } = generateChartData();
+            const verdict = getVerdict(waaPoint, params.L, params.k, params.x0);
+
+            // Update text elements
+            document.getElementById('display-waa').textContent = `${waaPoint.toFixed(1)} WAA`;
+            document.getElementById('display-f').textContent = `${verdict.oilContent.toFixed(1)}%`;
+            document.getElementById('display-df').textContent = `${verdict.rate.toFixed(2)}%`;
+            document.getElementById('verdict-title').textContent = verdict.title;
+            document.getElementById('verdict-desc').textContent = verdict.description;
+
+            // Highlight dynamic point markers on chart
+            const activeIndex = labels.indexOf(Math.round(waaPoint * 10) / 10);
+            
+            // Build dual-axes datasets with dynamic highlighting
+            ripeningChart.data.labels = labels;
+            ripeningChart.data.datasets[0].data = cumulativeData;
+            ripeningChart.data.datasets[1].data = rateData;
+            
+            // Marker point for Cumulative content
+            ripeningChart.data.datasets[2].data = [{
+                x: waaPoint,
+                y: verdict.oilContent
+            }];
+            
+            // Marker point for Derivative accumulation rate
+            ripeningChart.data.datasets[3].data = [{
+                x: waaPoint,
+                y: verdict.rate
+            }];
+
+            ripeningChart.update('none'); // Update smoothly without disrupting layout
+        }
+
+        // Build the physical chart instance
+        function initChart() {
+            const ctx = document.getElementById('ripeningChart').getContext('2d');
+            const { labels, cumulativeData, rateData } = generateChartData();
+
+            ripeningChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Cumulative Oil Content f(x) (%)',
+                            data: cumulativeData,
+                            borderColor: '#10b981', // Emerald 500
+                            backgroundColor: 'rgba(16, 185, 129, 0.08)',
+                            fill: true,
+                            tension: 0.2,
+                            borderWidth: 3,
+                            yAxisID: 'y1',
+                            pointRadius: 0,
+                            pointHoverRadius: 5
+                        },
+                        {
+                            label: "Accumulation Rate f'(x) (% / Week)",
+                            data: rateData,
+                            borderColor: '#f59e0b', // Amber 500
+                            backgroundColor: 'transparent',
+                            tension: 0.2,
+                            borderWidth: 3,
+                            borderDash: [5, 5],
+                            yAxisID: 'y2',
+                            pointRadius: 0,
+                            pointHoverRadius: 5
+                        },
+                        {
+                            label: 'Selected Cumulative Focus',
+                            data: [],
+                            borderColor: '#047857', // Darker emerald
+                            backgroundColor: '#047857',
+                            pointRadius: 8,
+                            pointHoverRadius: 10,
+                            showLine: false,
+                            yAxisID: 'y1'
+                        },
+                        {
+                            label: 'Selected Rate Focus',
+                            data: [],
+                            borderColor: '#b45309', // Darker amber
+                            backgroundColor: '#b45309',
+                            pointRadius: 8,
+                            pointHoverRadius: 10,
+                            showLine: false,
+                            yAxisID: 'y2'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    onClick: (evt) => {
+                        const points = ripeningChart.getElementsAtEventForMode(evt, 'index', { intersect: false }, true);
+                        if (points.length) {
+                            const index = points[0].index;
+                            const clickedX = parseFloat(ripeningChart.data.labels[index]);
+                            activeWaa = clickedX;
+                            updateUI(activeWaa);
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Weeks After Anthesis (WAA) → Cultivar Ripening Age',
+                                color: '#1e293b',
+                                font: { size: 11, weight: 'bold' }
+                            },
+                            grid: { color: '#f1f5f9' },
+                            ticks: { color: '#64748b' }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: {
+                                display: true,
+                                text: 'Total Oil % in Mesocarp (Dry Mass)',
+                                color: '#10b981',
+                                font: { size: 11, weight: 'bold' }
+                            },
+                            min: 0,
+                            max: 100,
+                            grid: { color: '#f1f5f9' },
+                            ticks: { color: '#64748b' }
+                        },
+                        y2: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: {
+                                display: true,
+                                text: 'Rate of Change f\'(x) (% / Week)',
+                                color: '#f59e0b',
+                                font: { size: 11, weight: 'bold' }
+                            },
+                            min: 0,
+                            max: 20,
+                            grid: { drawOnChartArea: false }, // avoid grid overlaps
+                            ticks: { color: '#64748b' }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false }, // custom styled legends used above
+                        tooltip: {
+                            backgroundColor: 'rgba(15, 23, 42, 0.95)',
+                            padding: 10,
+                            cornerRadius: 8,
+                            callbacks: {
+                                title: (items) => `Ripening Stage: ${items[0].label} WAA`,
+                                label: (context) => {
+                                    if (context.datasetIndex === 0) {
+                                        return `Oil Yield: ${context.parsed.y.toFixed(1)}%`;
+                                    } else if (context.datasetIndex === 1) {
+                                        return `Rate of Change: ${context.parsed.y.toFixed(2)}%/wk`;
+                                    }
+                                    return null;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Run UI mapping on setup parameters
+            updateUI(activeWaa);
+        }
+
+        // Set up interactive slider events
+        function setupListeners() {
+            const sliders = ['param-L', 'param-k', 'param-x0'];
+            sliders.forEach(id => {
+                document.getElementById(id).addEventListener('input', (e) => {
+                    // Instantly sync visual raw metrics values
+                    let displayVal = e.target.value;
+                    if (id === 'param-L') {
+                        document.getElementById('val-L').textContent = `${displayVal}.0%`;
+                    } else if (id === 'param-k') {
+                        document.getElementById('val-k').textContent = parseFloat(displayVal).toFixed(2);
+                    } else if (id === 'param-x0') {
+                        document.getElementById('val-x0').textContent = `${parseFloat(displayVal).toFixed(1)} WAA`;
+                    }
+                    
+                    // Trigger live computations and plot redesign dynamically
+                    updateUI(activeWaa);
+                });
+            });
+        }
+
+        // Reset to scientific defaults
+        function resetModel() {
+            document.getElementById('param-L').value = 80;
+            document.getElementById('param-k').value = 0.60;
+            document.getElementById('param-x0').value = 17.0;
+
+            document.getElementById('val-L').textContent = "80.0%";
+            document.getElementById('val-k').textContent = "0.60";
+            document.getElementById('val-x0').textContent = "17.0 WAA";
+
+            activeWaa = 17.0;
+            updateUI(activeWaa);
+        }
+
+        // Kickstart applications on DOM load
+        window.onload = function() {
+            initChart();
+            setupListeners();
+        };
+    </script>
+</body>
+</html>
